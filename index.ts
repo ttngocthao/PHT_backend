@@ -3,7 +3,7 @@ import express from 'express';
 const app = express();
 
 app.get('/',(_req,res)=>{
-    res.json('Hello pht typescript app');
+    res.send('typescript app');
 });
 
 const PORT: string|number = process.env.PORT || 5000;
