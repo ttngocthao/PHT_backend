@@ -1,0 +1,1 @@
+need to run npm run tsc before push code to git hub
