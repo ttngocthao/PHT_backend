@@ -9,7 +9,7 @@
     "dev": "ts-node-dev index.ts",
     "lint": "eslint --ext .ts .",
     "prod": "node build/index.js",
-    "start": "ts-node index.ts"
+    "start": "node build/index.js"
   },
   "repository": {
     "type": "git",
@@ -32,6 +32,7 @@
     "@typescript-eslint/eslint-plugin": "^4.22.0",
     "@typescript-eslint/parser": "^4.22.0",
     "eslint": "^7.24.0",
+    "ts-node": "^9.1.1",
     "ts-node-dev": "^1.1.6",
     "typescript": "^4.2.4"
   },
@@ -43,8 +44,7 @@
     "express-async-errors": "^3.1.1",
     "http": "^0.0.1-security",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.12.3",
-    "ts-node": "^9.1.1"
+    "mongoose": "^5.12.3"
   },
   "compilerOptions": {
     "exclude": [
