@@ -1,0 +1,14 @@
+POST http://localhost:5000/api/mealNotes
+Content-Type: application/json
+
+{
+    "date":"Thu 15 Apr 21",
+    "username":"thao",
+    "mealType":"Breakfast",    
+    "menuDetails":"black coffee",
+    "bgBe4Meal":"normal",
+    "bgAftMeal":"normal",
+    "bpBe4Meal":"normal",
+    "bpAftMeal":"normal",
+    "note":"Usual morning fast"
+}

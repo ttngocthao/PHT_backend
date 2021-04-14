@@ -1,10 +1,5 @@
-import {model,Schema,Document} from 'mongoose';
-
-enum EMealType {
-    Breakfast='Breakfast',
-    Lunch = 'Lunch',
-    Dinner = 'Dinner'
-}
+import {model,Schema} from 'mongoose';
+import {IMealNote} from '../types/index';
 
 const MealNoteSchema: Schema = new Schema({
     date:{
@@ -50,20 +45,7 @@ const MealNoteSchema: Schema = new Schema({
     }
 });
 
-export interface IMealNote extends Document{
-    date:string,
-    username:string,
-    mealType: EMealType,
-    skippedMeal:boolean,
-    takenMed:boolean,
-    medNote?:string,
-    menuDetails?: string,
-    bgBe4Meal?:string,
-    bgAftMeal?:string,
-    bpBe4Meal?:string
-    bpAftMeal?:string
-    note?:string
-}
+
 
 const MealNote = model<IMealNote>('MealNote',MealNoteSchema);
 

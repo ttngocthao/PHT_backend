@@ -4,6 +4,7 @@ import cors from 'cors';
 import mongoose from 'mongoose';
 
 import dailyNoteRouter from './routes/dailyNote';
+import mealNoteRouter from './routes/mealNote';
 
 dotenv.config();
 const app = express();
@@ -17,10 +18,11 @@ if(process.env.NODE_ENV==='dev'){
 }
 
 app.get('/',(_req,res)=>{
-    res.send('typescript app ts');
+    res.send('personal health tracker');
 });
 
 app.use('/api/dailyNotes',dailyNoteRouter);
+app.use('/api/mealNotes',mealNoteRouter);
 
 const PORT: string|number = process.env.PORT || 5000;
 
