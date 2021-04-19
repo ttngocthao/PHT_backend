@@ -11,7 +11,7 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-const mongoDBUrl = (process.env.NODE_ENV==='dev' ? process.env.DEV_MONGODB : process.env.NODE_ENV==='prod'? process.env.PROD_MONGODB:'') ?? '';
+const mongoDBUrl = (process.env.NODE_ENV==='dev' ? process.env.DEV_MONGODB : process.env.NODE_ENV==='production'? process.env.PROD_MONGODB:'') ?? '';
 
 
 mongoose.connect(mongoDBUrl,

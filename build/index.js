@@ -33,7 +33,7 @@ dotenv.config();
 const app = express_1.default();
 app.use(express_1.default.json());
 app.use(cors_1.default());
-const mongoDBUrl = (_a = (process.env.NODE_ENV === 'dev' ? process.env.DEV_MONGODB : process.env.NODE_ENV === 'prod' ? process.env.PROD_MONGODB : '')) !== null && _a !== void 0 ? _a : '';
+const mongoDBUrl = (_a = (process.env.NODE_ENV === 'dev' ? process.env.DEV_MONGODB : process.env.NODE_ENV === 'production' ? process.env.PROD_MONGODB : '')) !== null && _a !== void 0 ? _a : '';
 mongoose_1.default.connect(mongoDBUrl, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
