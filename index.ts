@@ -11,11 +11,20 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-const mongoDBUrl = process.env.DEV_MONGODB ?? '';
+const mongoDBUrl = (process.env.NODE_ENV==='dev' ? process.env.DEV_MONGODB : process.env.NODE_ENV==='prod'? process.env.PROD_MONGODB:'') ?? '';
 
-if(process.env.NODE_ENV==='dev'){
-   mongoose.connect(mongoDBUrl,{ useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false, useCreateIndex: true }).then(()=>console.log('Connected to MongoDB')).catch(err=>console.log(err));
-}
+
+mongoose.connect(mongoDBUrl,
+{ 
+    useNewUrlParser: true, 
+    useUnifiedTopology: true, 
+    useFindAndModify: false, 
+    useCreateIndex: true 
+})
+.then(()=>console.log('Connected to MongoDB'))
+.catch(err=>console.log(err));
+
+
 
 app.get('/',(_req,res)=>{
     res.send('personal health tracker');
