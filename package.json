@@ -8,7 +8,7 @@
     "dev": "cross-env NODE_ENV=dev ts-node-dev index.ts",
     "lint": "eslint --ext .ts .",
     "prod": "tsc",
-    "start": "cross-env node NODE_ENV=prod build/index.js",
+    "start": "node NODE_ENV=prod build/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
