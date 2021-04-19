@@ -5,3 +5,4 @@
 # Ignore built files except build/index.js
 # build/*
 # !build/index.js
+*.js
