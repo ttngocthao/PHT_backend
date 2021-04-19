@@ -1,3 +1,10 @@
 POST http://localhost:5000/api/dailyNotes
 Content-Type: application/json
 
+{
+  "date":"Sat 17 Apr 21",
+  "username":"mum",
+  "fastingHours":"0",
+  "sleepingHours":"7",
+  "note":"Feel very well"
+}

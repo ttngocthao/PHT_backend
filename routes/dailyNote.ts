@@ -1,23 +1,31 @@
 import express from 'express';
-import DailyNote from '../models/DailyNote';
+
+import dailyNoteService from '../services/dailyNote';
+import { convertReqToDailyNote } from '../utils/convertReqToDailyNote';
+
 
 const router = express.Router();
 
 router.get('/',(_req,res)=>{
-  DailyNote.find({}).then(result=>res.status(200).json(result)).catch(err=>console.log(err));
-  //res.send('get all daily notes');
+  //const currentUser ='mum';//!for future if there are more than a users
+  dailyNoteService.getAll()
+        .then(result=>res.status(200).json(result))
+        .catch(error=>console.log(error));
+});
+
+router.get('/:id',(_req,res)=>{
+  dailyNoteService.getById(_req.params.id)
+    .then(result=>res.status(200).json(result))
+    .catch(error => console.log(error));
+    
 });
 
 router.post('/',(_req,res)=>{
-   
-    const newDailyNote = new DailyNote({
-        date:'Wed 14 Apr 21',
-        username:'paul',
-        fastingHours:0,
-        sleepingHours:6,
-        note: 'Did not feel well yesterday after swimming exercise',
-    });
-     newDailyNote.save().then(result=>res.status(201).json(result)).catch(err=>console.log(err));
+  //todo: convert _req.body to the proper type before sending
+    const newDailyNote = convertReqToDailyNote(_req.body); 
+    dailyNoteService.add(newDailyNote)
+      .then(result=>res.status(201).json(result))
+      .catch(err=>console.log(err));
    
 });
 

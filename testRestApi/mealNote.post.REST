@@ -3,12 +3,13 @@ Content-Type: application/json
 
 {
     "date":"Thu 15 Apr 21",
-    "username":"thao",
-    "mealType":"Breakfast",    
-    "menuDetails":"black coffee",
+    "username":"mum",
+    "mealType":"Dinner",    
+    "menuDetails":"Chicken, chickpea coconut curry with steamed broccoli",
     "bgBe4Meal":"normal",
     "bgAftMeal":"normal",
     "bpBe4Meal":"normal",
     "bpAftMeal":"normal",
-    "note":"Usual morning fast"
+    "skippedMeal":false,
+    "note":"I was very full after the meal. had 1.5 square of dark chocolate for dessert."
 }

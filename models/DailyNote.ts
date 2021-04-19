@@ -1,12 +1,8 @@
-import {model,Schema,Document} from 'mongoose';
-import {IMealNote} from '../models/MealNote';
+import {model,Schema,Document, Types} from 'mongoose';
+
 
 
 const DailyNoteSchema: Schema = new Schema({
-    testing: {
-        type: Boolean,
-        default: true
-    },
     date:{
         type: String,
         required: true
@@ -23,29 +19,35 @@ const DailyNoteSchema: Schema = new Schema({
     },
     note: {
         type: String,      
+    },  
+    breakfast: {
+        type: Schema.Types.ObjectId,
+        ref:'MealNote'
     },
-    meals:{
-       breakfast: {
-           type: Schema.Types.ObjectId
-       },
-       lunch: {
-           type: Schema.Types.ObjectId
-       }
+    lunch: {
+        type: Schema.Types.ObjectId,
+        ref:'MealNote'
+    },
+    dinner:{
+        type: Schema.Types.ObjectId,
+        ref:'MealNote'
     }
+      
+    
 });
-interface IMeals extends Document{
-    breakfast: IMealNote;
-    lunch: IMealNote;
-    dinner: IMealNote
-}
+
+
+
 interface IDailyNote extends Document{
     date:string;
     username:string;
     fastingHours:string;
     sleepingHours:string;
     dailyNote:string;
-    meals:IMeals
-    }
+    breakfast: Types.ObjectId;
+    lunch: Types.ObjectId;
+    dinner: Types.ObjectId;
+}
 
 const DailyNote = model<IDailyNote>('DailyNote',DailyNoteSchema);
 
