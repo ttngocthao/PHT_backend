@@ -1,11 +1,12 @@
 import {model,Schema,Document, Types} from 'mongoose';
-
+import uniqueValidator from 'mongoose-unique-validator';
 
 
 const DailyNoteSchema: Schema = new Schema({
     date:{
         type: String,
-        required: true
+        required: true,
+        unique:true
     },
     username:{
         type: String,
@@ -34,6 +35,16 @@ const DailyNoteSchema: Schema = new Schema({
     }
       
     
+},{
+    toJSON:{
+        transform: function(_doc,returnObj){  
+            /* eslint-disable @typescript-eslint/no-unsafe-call */
+            /* eslint-disable @typescript-eslint/no-unsafe-assignment */           
+            returnObj.id = returnObj._id.toString();
+            delete returnObj.__v;
+            delete returnObj._id;
+        }
+    }
 });
 
 
@@ -48,7 +59,7 @@ interface IDailyNote extends Document{
     lunch: Types.ObjectId;
     dinner: Types.ObjectId;
 }
-
+DailyNoteSchema.plugin(uniqueValidator);
 const DailyNote = model<IDailyNote>('DailyNote',DailyNoteSchema);
 
 export default DailyNote;

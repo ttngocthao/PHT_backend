@@ -1,3 +1,4 @@
+
 import {model,Schema} from 'mongoose';
 import {IMealNote} from '../types/index';
 
@@ -42,6 +43,16 @@ const MealNoteSchema: Schema = new Schema({
     },
     note:{
         type: String
+    }
+},{
+    toJSON:{
+        transform: function(_doc,returnObj){      
+            /* eslint-disable @typescript-eslint/no-unsafe-call */
+            /* eslint-disable @typescript-eslint/no-unsafe-assignment */       
+            returnObj.id = returnObj._id.toString();
+            delete returnObj.__v;
+            delete returnObj._id;
+        }
     }
 });
 
