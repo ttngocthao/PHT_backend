@@ -2,3 +2,4 @@ need to run npm run tsc before push code to git hub
 live site: https://ttnt-health-tracker-backend.herokuapp.com/
 
 if there is 2 files, name the same, different extension, for ex: file.js and file.ts . The js file will be used.
+lesson learn: in react-typescript do not define type in *.d.ts as it does not allow enum!
