@@ -44,16 +44,23 @@ const add = async(reqBody:DailyNoteEntry):Promise<void|DailyNoteEntry>=>{
     }
 };
 
-// const update = async(DailyNoteId:string):Promise<void|DailyNoteEntry|null>=>{
-//     //todo: check if dailyNote exist
-//     //*: if not throw error
-//     //*: if exist, update the item
-//     try {
-        
-//     } catch (error) {
-        
-//     }
-// }
+const update = async(dailyNoteId:string,reqBody:DailyNoteEntry):Promise<void|DailyNoteEntry|null>=>{
+    //todo: check if dailyNote exist
+    //*: if not throw error
+    //*: if exist, update the item
+    try {
+        const noteExist = await DailyNote.findById(dailyNoteId);
+        if(!noteExist){
+            throw new Error('Note is not existed');
+        }
+        const result = await DailyNote.findOneAndUpdate({_id:dailyNoteId},reqBody,{new:true,upsert: true});
+        return result;
+    } catch (error) {
+        return console.log(error);
+    }
+};
 
 
-export default {getAll,add,getById};
+export default {getAll,add,getById,update};
+
+

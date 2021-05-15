@@ -25,8 +25,12 @@ router.post('/',(_req,res)=>{
     const newDailyNote = convertReqToDailyNote(_req.body); 
     dailyNoteService.add(newDailyNote)
       .then(result=>res.status(201).json(result))
-      .catch(err=>console.log(err));
-   
+      .catch(err=>console.log(err));   
+});
+
+router.post('/update/:id',(_req,res)=>{
+  const noteId = _req.params.id;
+  dailyNoteService.update(noteId,_req.body).then(result=>res.status(200).json(result)).catch(err=>console.log(err));
 });
 
 export default router;

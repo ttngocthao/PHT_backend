@@ -1,0 +1,21 @@
+POST http://localhost:5000/api/dailyNotes/update/60795ea6d2572a3c37fed02d
+Content-Type: application/json
+
+{
+    "activities":"3km walk",
+    "beverages":"lemon juice with no sugar"
+}
+
+
+# {
+#   "bloodGlucose":[
+#       {
+#           "time":"10:30",
+#           "readingNo":"110"
+#       },
+#       {
+#           "time":"14:30",
+#           "readingNo":"140"
+#       }
+#   ]
+# }

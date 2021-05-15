@@ -1,6 +1,6 @@
 import {model,Schema,Document, Types} from 'mongoose';
 import uniqueValidator from 'mongoose-unique-validator';
-
+import {Measurement,Medication} from '../types';
 
 const DailyNoteSchema: Schema = new Schema({
     date:{
@@ -17,6 +17,24 @@ const DailyNoteSchema: Schema = new Schema({
     },
     sleepingHours:{
         type: String,      
+    },
+    bloodPressure:[{
+        time: String,
+        readingNo: String
+    }],
+    bloodGlucose:[{
+        time:String,
+        readingNo: String
+    }],
+    medication:[{
+        time:String,
+        medName:String
+    }],
+    activities:{
+        type:String
+    },
+    beverages:{
+        type:String
     },
     note: {
         type: String,      
@@ -58,6 +76,11 @@ interface IDailyNote extends Document{
     breakfast: Types.ObjectId;
     lunch: Types.ObjectId;
     dinner: Types.ObjectId;
+    bloodPressure:Measurement[],
+    bloodGlucose:Measurement[],
+    medication:Medication[],
+    activities:string,
+    beverages: string
 }
 DailyNoteSchema.plugin(uniqueValidator);
 const DailyNote = model<IDailyNote>('DailyNote',DailyNoteSchema);
