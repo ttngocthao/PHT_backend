@@ -2,9 +2,28 @@ POST http://localhost:5000/api/dailyNotes
 Content-Type: application/json
 
 {
-  "date":"Sat 17 Apr 21",
+  "date":"Thu 20 May 21",
   "username":"mum",
-  "fastingHours":"0",
-  "sleepingHours":"7",
-  "note":"Feel very well"
+  "fastingHours":"24",
+  "sleepingHours":"8",
+  "activities":"3sets - 8 rounds - Tabata workout, 40mins post dinner walk",
+  "note":"Muscle pain b/c of golf and dumbel workout",
+  "medication":[
+    {
+      "medName":"Multi vitamin",
+      "time":"19:30"
+    }
+  ],
+  "bloodGlucose":[
+    {
+      "readingNo":"76",
+      "time":"12:27"
+    }
+  ],
+  "bloodPressure":[
+    {
+      "readingNo":"102/67",
+      "time":"12:04"
+    }
+  ]
 }

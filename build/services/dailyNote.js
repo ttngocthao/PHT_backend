@@ -51,12 +51,20 @@ const add = (reqBody) => __awaiter(void 0, void 0, void 0, function* () {
         return console.log(error);
     }
 });
-// const update = async(DailyNoteId:string):Promise<void|DailyNoteEntry|null>=>{
-//     //todo: check if dailyNote exist
-//     //*: if not throw error
-//     //*: if exist, update the item
-//     try {
-//     } catch (error) {
-//     }
-// }
-exports.default = { getAll, add, getById };
+const update = (dailyNoteId, reqBody) => __awaiter(void 0, void 0, void 0, function* () {
+    //todo: check if dailyNote exist
+    //*: if not throw error
+    //*: if exist, update the item
+    try {
+        const noteExist = yield DailyNote_1.default.findById(dailyNoteId);
+        if (!noteExist) {
+            throw new Error('Note is not existed');
+        }
+        const result = yield DailyNote_1.default.findOneAndUpdate({ _id: dailyNoteId }, reqBody, { new: true, upsert: true });
+        return result;
+    }
+    catch (error) {
+        return console.log(error);
+    }
+});
+exports.default = { getAll, add, getById, update };

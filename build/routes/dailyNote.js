@@ -25,4 +25,8 @@ router.post('/', (_req, res) => {
         .then(result => res.status(201).json(result))
         .catch(err => console.log(err));
 });
+router.post('/update/:id', (_req, res) => {
+    const noteId = _req.params.id;
+    dailyNote_1.default.update(noteId, _req.body).then(result => res.status(200).json(result)).catch(err => console.log(err));
+});
 exports.default = router;

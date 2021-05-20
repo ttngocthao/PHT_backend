@@ -1,4 +1,4 @@
-import {Measurement, Medication} from '../types';
+import {Measurements, Medications} from '../types';
 
 export interface DailyNoteEntry{
     date:string;
@@ -7,9 +7,9 @@ export interface DailyNoteEntry{
     sleepingHours?:string;
     dailyNote?:string;
     note?:string;
-    bloodPressure?:Measurement[],
-    bloodGlucose?:Measurement[],
-    medication?:Medication[],
+    bloodPressure?:Measurements,
+    bloodGlucose?:Measurements,
+    medication?:Medications,
     activities?:string,
     beverages?: string
 }

@@ -38,6 +38,7 @@ const add = async(reqBody:DailyNoteEntry):Promise<void|DailyNoteEntry>=>{
         }
         const newDailyNote = new DailyNote(reqBody);
         const result = await newDailyNote.save();
+        
         return result;
     } catch (error) {
         return console.log(error);
