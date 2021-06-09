@@ -1,6 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.EMealType = void 0;
 var EMealType;
 (function (EMealType) {
     EMealType["Breakfast"] = "Breakfast";

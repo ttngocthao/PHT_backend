@@ -1,10 +1,9 @@
 "use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
         function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
@@ -14,7 +13,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const DailyNote_1 = __importDefault(require("../models/DailyNote"));
 const MealNote_1 = __importDefault(require("../models/MealNote"));
-const getAll = () => __awaiter(void 0, void 0, void 0, function* () {
+const getAll = () => __awaiter(this, void 0, void 0, function* () {
     try {
         const result = yield MealNote_1.default.find({});
         return result;
@@ -23,7 +22,7 @@ const getAll = () => __awaiter(void 0, void 0, void 0, function* () {
         return console.log(error);
     }
 });
-const getById = (id) => __awaiter(void 0, void 0, void 0, function* () {
+const getById = (id) => __awaiter(this, void 0, void 0, function* () {
     try {
         const mealNote = yield MealNote_1.default.findById(id);
         if (!mealNote) {
@@ -35,7 +34,7 @@ const getById = (id) => __awaiter(void 0, void 0, void 0, function* () {
         return console.log(error);
     }
 });
-const add = (reqBody) => __awaiter(void 0, void 0, void 0, function* () {
+const add = (reqBody) => __awaiter(this, void 0, void 0, function* () {
     const newMealNote = new MealNote_1.default(reqBody);
     try {
         const result = yield newMealNote.save();
@@ -77,6 +76,19 @@ const add = (reqBody) => __awaiter(void 0, void 0, void 0, function* () {
         return console.log(error);
     }
 });
+const edit = (mealNoteId, reqBody) => __awaiter(this, void 0, void 0, function* () {
+    try {
+        const mealNote = yield MealNote_1.default.findById(mealNoteId);
+        if (!mealNote) {
+            throw new Error('Meal note cannot be found');
+        }
+        const updatedMealNote = yield MealNote_1.default.findByIdAndUpdate(mealNoteId, reqBody, { new: true, upsert: true });
+        return updatedMealNote;
+    }
+    catch (error) {
+        return console.log(error);
+    }
+});
 exports.default = {
-    getAll, getById, add
+    getAll, getById, add, edit
 };

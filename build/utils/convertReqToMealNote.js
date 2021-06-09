@@ -1,6 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.convertReqToMealNote = void 0;
 const _1 = require(".");
 const types_1 = require("../types");
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -47,7 +46,7 @@ const parseMedNote = (value) => {
     return _1.parseStringField(value, 'MealNote - medNote');
 };
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const convertReqToMealNote = (reqBody) => {
+exports.convertReqToMealNote = (reqBody) => {
     const newMealNote = {
         date: _1.parseDateField(reqBody.date, 'MealNote - date'),
         username: _1.parseStringField(reqBody.username, 'MealNote - username'),
@@ -64,4 +63,3 @@ const convertReqToMealNote = (reqBody) => {
     };
     return newMealNote;
 };
-exports.convertReqToMealNote = convertReqToMealNote;

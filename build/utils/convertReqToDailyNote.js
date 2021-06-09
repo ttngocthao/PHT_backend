@@ -1,6 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.convertReqToDailyNote = void 0;
 /* eslint-disable @typescript-eslint/no-explicit-any */
 const _1 = require(".");
 const parseFastingHours = (value) => {
@@ -49,7 +48,7 @@ const parseMeasurements = (value) => {
     return value; //! need to define an array of measurement type somewhere
 };
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const convertReqToDailyNote = (reqBody) => {
+exports.convertReqToDailyNote = (reqBody) => {
     const newDailyNote = {
         date: _1.parseDateField(reqBody.date, 'dailyNote - date'),
         username: _1.parseStringField(reqBody.username, 'dailyNote - username'),
@@ -64,4 +63,3 @@ const convertReqToDailyNote = (reqBody) => {
     };
     return newDailyNote;
 };
-exports.convertReqToDailyNote = convertReqToDailyNote;

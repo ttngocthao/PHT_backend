@@ -1,6 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.parseNumberField = exports.parseStringField = exports.parseDateField = exports.isArray = void 0;
 const isNumber = (value) => {
     return typeof value === 'number';
 };
@@ -10,31 +9,27 @@ const isString = (str) => {
 const isDate = (date) => {
     return Boolean(Date.parse(date));
 };
-const isArray = (value) => {
+exports.isArray = (value) => {
     return Array.isArray(value);
 };
-exports.isArray = isArray;
-const parseDateField = (value, field) => {
+exports.parseDateField = (value, field) => {
     if (!value || !isString(value) || !isDate(value)) {
         throw new Error(`Incorrect or missing ${field}`);
     }
     return value;
 };
-exports.parseDateField = parseDateField;
-const parseStringField = (value, field) => {
+exports.parseStringField = (value, field) => {
     if (!value || !isString(value)) {
         throw new Error(`Incorrect or missing ${field}`);
     }
     return value;
 };
-exports.parseStringField = parseStringField;
-const parseNumberField = (value, field) => {
+exports.parseNumberField = (value, field) => {
     if (value === undefined || !isNumber(value)) {
         throw new Error(`Incorrect or missing ${field}`);
     }
     return value;
 };
-exports.parseNumberField = parseNumberField;
 // export const parseBooleanField =(value:unknown,field:string):boolean=>{   
 //     if(value!== true && value!== false){
 //         throw new Error(`Incorrect type of boolean ${field}`);

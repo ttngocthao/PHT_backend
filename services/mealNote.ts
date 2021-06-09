@@ -1,7 +1,7 @@
 
 import DailyNote from '../models/DailyNote';
 import MealNote from '../models/MealNote';
-import { IMealNote, MealNoteEntry } from '../types';
+import { MealNoteEntry } from '../types';
 import {Types} from 'mongoose';
 
 
@@ -73,7 +73,7 @@ const add = async (reqBody:MealNoteEntry):Promise<void|MealNoteEntry>=>{
     
 };
 
-const edit = async(mealNoteId:string,reqBody:Partial<MealNoteEntry>):Promise<void|IMealNote|null>=>{
+const edit = async(mealNoteId:string,reqBody:Partial<MealNoteEntry>):Promise<void|MealNoteEntry|null>=>{
     try {
        const mealNote =  await MealNote.findById(mealNoteId);
        if(!mealNote){
