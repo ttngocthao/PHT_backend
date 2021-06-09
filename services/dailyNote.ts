@@ -19,7 +19,8 @@ const getAll =async():Promise<void|DailyNoteEntry[]>=>{
 
 const getById = async(dailyNoteId:string):Promise<void|DailyNoteEntry|null>=>{
     try {
-        const result = await DailyNote.findById(dailyNoteId) .populate('breakfast')
+        const result = await DailyNote.findById(dailyNoteId)
+                .populate('breakfast')
                 .populate('lunch')
                 .populate('dinner');
         return result;
@@ -45,7 +46,7 @@ const add = async(reqBody:DailyNoteEntry):Promise<void|DailyNoteEntry>=>{
     }
 };
 
-const update = async(dailyNoteId:string,reqBody:DailyNoteEntry):Promise<void|DailyNoteEntry|null>=>{
+const update = async(dailyNoteId:string,reqBody:Partial<DailyNoteEntry>):Promise<void|DailyNoteEntry|null>=>{
     //todo: check if dailyNote exist
     //*: if not throw error
     //*: if exist, update the item
@@ -54,7 +55,10 @@ const update = async(dailyNoteId:string,reqBody:DailyNoteEntry):Promise<void|Dai
         if(!noteExist){
             throw new Error('Note is not existed');
         }
-        const result = await DailyNote.findOneAndUpdate({_id:dailyNoteId},reqBody,{new:true,upsert: true});
+        const result = await DailyNote.findOneAndUpdate({_id:dailyNoteId},reqBody,{new:true,upsert: true})
+                .populate('breakfast')
+                .populate('lunch')
+                .populate('dinner');
         return result;
     } catch (error) {
         return console.log(error);

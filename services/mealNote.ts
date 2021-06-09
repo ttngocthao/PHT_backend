@@ -1,8 +1,9 @@
 
 import DailyNote from '../models/DailyNote';
 import MealNote from '../models/MealNote';
-import { MealNoteEntry } from '../types';
+import { IMealNote, MealNoteEntry } from '../types';
 import {Types} from 'mongoose';
+
 
 
 const getAll = async ():Promise<void|MealNoteEntry[]>=>{
@@ -72,8 +73,19 @@ const add = async (reqBody:MealNoteEntry):Promise<void|MealNoteEntry>=>{
     
 };
 
-
+const edit = async(mealNoteId:string,reqBody:Partial<MealNoteEntry>):Promise<void|IMealNote|null>=>{
+    try {
+       const mealNote =  await MealNote.findById(mealNoteId);
+       if(!mealNote){
+           throw new Error('Meal note cannot be found');
+       }
+       const updatedMealNote = await MealNote.findByIdAndUpdate(mealNoteId,reqBody,{new:true,upsert: true});
+       return updatedMealNote;
+    } catch (error) {
+        return console.log(error);
+    }
+};
 
 export default{
-    getAll,getById,add
+    getAll,getById,add,edit
 };

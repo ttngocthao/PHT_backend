@@ -1,0 +1,6 @@
+POST http://localhost:5000/api/mealNotes/60796dbb5643a13f6948cdcd
+Content-Type: application/json
+
+{
+    "menuDetails":"Steak with chips and salad"
+}
