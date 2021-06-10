@@ -50,4 +50,12 @@ router.post('/:id',(_req,res)=>{
     .catch(error =>console.log(error));
 });
 
+
+router.delete('/:id',(_req,res)=>{
+    const mealNoteId = _req.params.id;
+    mealNoteService.remove(mealNoteId)
+        .then(result=>res.status(200).json(result))
+        .catch(error=>console.log(error));
+});
+
 export default router;

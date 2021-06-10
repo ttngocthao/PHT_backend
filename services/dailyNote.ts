@@ -1,4 +1,5 @@
 import DailyNote from "../models/DailyNote";
+import MealNote from "../models/MealNote";
 import { DailyNoteEntry } from "../types";
 
 
@@ -66,6 +67,29 @@ const update = async(dailyNoteId:string,reqBody:Partial<DailyNoteEntry>):Promise
 };
 
 
-export default {getAll,add,getById,update};
+const remove = async(dailyNoteId:string):Promise<void|DailyNoteEntry>=>{
+    try {
+        const dailyNote = await DailyNote.findById(dailyNoteId);
+        if(!dailyNote){
+            throw new Error('Note is not existed');
+        }
+        //!remove all mealNotes associated to this date too.
+        const dateOfTheNote = dailyNote.date;
+       
+        const allMealNotesWithThisDate = await MealNote.find({date:dateOfTheNote});
+        if(allMealNotesWithThisDate.length!==0){
+            allMealNotesWithThisDate.map(async(item)=>await MealNote.findByIdAndDelete(item._id));
+           
+        }
+       
+        //!then remove the dailyNote.
+        const result = await dailyNote.remove();
+        return result;
+    } catch (error) {
+        return console.log(error);
+    }
+};
+
+export default {getAll,add,getById,update,remove};
 
 

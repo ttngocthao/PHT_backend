@@ -1,0 +1,2 @@
+DELETE http://localhost:5000/api/dailyNotes/60795ea6d2572a3c37fed02d
+Content-Type: application/json

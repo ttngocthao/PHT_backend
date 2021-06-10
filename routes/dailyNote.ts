@@ -28,9 +28,18 @@ router.post('/',(_req,res)=>{
       .catch(err=>console.log(err));   
 });
 
-router.post('/update/:id',(_req,res)=>{
+router.post('/:id',(_req,res)=>{
   const noteId = _req.params.id;
   dailyNoteService.update(noteId,_req.body).then(result=>res.status(200).json(result)).catch(err=>console.log(err));
+});
+
+router.delete('/:id',(_req,res)=>{
+  const noteId = _req.params.id;
+  dailyNoteService.remove(noteId)
+    .then(result=> res.status(200).json(result))
+    .catch(error=> {
+      console.log(error);
+      });
 });
 
 export default router;

@@ -1,0 +1,2 @@
+DELETE http://localhost:5000/api/mealNotes/607968fe4db0053e64a37524
+Content-Type: application/json

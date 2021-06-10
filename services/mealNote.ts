@@ -86,6 +86,21 @@ const edit = async(mealNoteId:string,reqBody:Partial<MealNoteEntry>):Promise<voi
     }
 };
 
+const remove = async(mealNoteId:string):Promise<void|MealNoteEntry>=>{
+    try {
+        const mealNote = await MealNote.findById(mealNoteId);
+        if(!mealNote){
+            throw new Error('Meal note cannot be found');
+        }
+        //! in future, check if correct user.
+        const result = await mealNote.remove();
+        return result;
+
+    } catch (error) {
+         return console.log(error);
+    }
+};
+
 export default{
-    getAll,getById,add,edit
+    getAll,getById,add,edit,remove
 };
